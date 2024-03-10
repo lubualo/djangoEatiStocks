@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Homepage</title>
+</head>
+<body>
+  <h1>Add a new stock</h1>
+  <form action="{% url 'stockmanager:addStock' %}" method="post">
+    {% csrf_token %}
+    {{ addForm }}
+    <input type="submit">
+  </form>
+</body>
+</html>
