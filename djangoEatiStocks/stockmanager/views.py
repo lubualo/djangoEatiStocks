@@ -2,8 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django import forms
 from django.urls import reverse
-
-stocks = ["AAPL", "BA", "TSLA"]
+from .models import Investment
 
 class AddStockForm(forms.Form):
     ticker = forms.CharField(label="Ticker", max_length=4)
@@ -14,7 +13,7 @@ def index(request):
   return render(
     request,
     "stockmanager/index.html",
-    {"stocks": stocks}
+    {"investments": Investment.objects.all()}
   )
 
 def add(request):
