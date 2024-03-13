@@ -3,14 +3,33 @@
 <head>
   <meta charset="utf-8">
   <title>Homepage</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
   <h1>Portfolio summary</h1>
-  <ul>
-    {% for investment in investments %}
-      <li>{{ investment }}</li>
-    {% endfor %}
-  </ul>
-  <a href='{% url "stockmanager:addStock" %}'>Add a new stock</a>
+  
+  <div class="container">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Ticker</th>
+          <th scope="col">Date</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for investment in investments %}
+        <tr>
+          <td>{{ investment.stock }}</td>
+          <td>{{ investment.date }}</td>
+          <td>{{ investment.quantity }}</td>
+          <td>{{ investment.pricePerUnit }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href='{% url "stockmanager:addStock" %}'>Add a new stock</a>
+  </div>
 </body>
 </html>
