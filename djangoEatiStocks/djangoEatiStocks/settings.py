@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'stockmanager',
     'crispy_forms',
     "crispy_bootstrap5",
+    "mathfilters",
 ]
 
 # Crispy forms app template sources
