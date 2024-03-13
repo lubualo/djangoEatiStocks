@@ -7,17 +7,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('stockmanager', '0001_initial'),
+        ("stockmanager", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Investment',
+            name="Investment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.DateField()),
-                ('pricePerUnit', models.FloatField()),
-                ('stock', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='stockmanager.stock')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.DateField()),
+                ("pricePerUnit", models.FloatField()),
+                (
+                    "stock",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="stockmanager.stock",
+                    ),
+                ),
             ],
         ),
     ]

@@ -7,18 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('stockmanager', '0002_investment'),
+        ("stockmanager", "0002_investment"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='investment',
-            name='date',
+            model_name="investment",
+            name="date",
             field=models.DateField(default=datetime.date.today),
         ),
         migrations.AlterField(
-            model_name='investment',
-            name='quantity',
+            model_name="investment",
+            name="quantity",
             field=models.FloatField(),
         ),
     ]
