@@ -24,3 +24,29 @@ def getInvestmentsWithCurrentPrice():
             }
         )
     return investments
+
+
+def getTickerInfo(ticker: str):
+    ticker = yf.Ticker(ticker.upper())
+    tickerHistory = ticker.history()
+    if 'Empty DataFrame' in str(tickerHistory):
+        return None
+    else:
+        return ticker.info
+
+
+def isNewTicker(ticker: str):
+    try:
+        Stock.objects.get(ticker=ticker)
+        return False
+    except Stock.DoesNotExist:
+        return True
+
+
+def getTickersList():
+    tickersInfo = []
+    for stock in Stock.objects.all():
+        tickerInfo = getTickerInfo(stock.ticker)
+        tickersInfo.append(tickerInfo)
+    return tickersInfo
+    

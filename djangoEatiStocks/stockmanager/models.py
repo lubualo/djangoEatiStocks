@@ -2,22 +2,11 @@ import datetime
 from django.db import models
 
 
-class Bourse(models.Model):
-    code = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f"{self.code}"
-
-
 class Stock(models.Model):
-    ticker = models.CharField(max_length=5)
-    name = models.CharField(max_length=64)
-    bourse = models.ForeignKey(
-        Bourse, on_delete=models.CASCADE, related_name="registeredStocks"
-    )
+    ticker = models.CharField(max_length=10)
 
     def __str__(self):
-        return f"{self.bourse}:{self.ticker} - {self.name}"
+        return f"{self.ticker}"
 
 
 class Investment(models.Model):

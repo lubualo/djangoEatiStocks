@@ -18,6 +18,14 @@ def index(request):
     )
 
 
+def tickerList(request):
+    return render(
+        request,
+        "stockmanager/tickerList.html",
+        {"tickersInfo": services.getTickersList()},
+    )
+
+
 def add(request):
     if request.method == "POST":
         form = forms.AddStockForm(request.POST)
@@ -35,4 +43,37 @@ def add(request):
     else:
         return render(
             request, "stockmanager/add.html", {"addForm": forms.AddStockForm()}
+        )
+
+
+def addTickerSearch(request):
+    if request.method == "POST":
+        form = forms.SearchTickerForm(request.POST)
+        if form.is_valid():
+            ticker = form.cleaned_data["ticker"]
+            tickerInfo = services.getTickerInfo(ticker)
+            if tickerInfo != None:
+                if services.isNewTicker(ticker):
+                    stock = Stock.objects.create(ticker=ticker.upper())
+                    stock.save()
+                return render(
+                    request, "stockmanager/tickerFound.html", {"tickerInfo": tickerInfo}
+                )
+            else:
+                return render(
+                    request,
+                    "stockmanager/invalidTicker.html",
+                    {"ticker": form.cleaned_data["ticker"]},
+                )
+        else:
+            return render(
+                request,
+                "stockmanager/invalidTicker.html",
+                {"ticker": form.cleaned_data["ticker"]},
+            )
+    else:
+        return render(
+            request,
+            "stockmanager/addTicker.html",
+            {"searchForm": forms.SearchTickerForm()},
         )

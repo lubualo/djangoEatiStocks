@@ -25,3 +25,17 @@ class AddStockForm(forms.Form):
             "price",
             Submit("submit", "Submit"),
         )
+
+
+class SearchTickerForm(forms.Form):
+    ticker = forms.CharField(label="Ticker", max_length=10, required=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = "id-addstockform"
+        self.helper.form_method = "post"
+        self.helper.layout = Layout(
+            "ticker",
+            Submit("submit", "Add ticker"),
+        )
