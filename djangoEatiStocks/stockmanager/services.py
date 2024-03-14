@@ -29,7 +29,7 @@ def getInvestmentsWithCurrentPrice():
 def getTickerInfo(ticker: str):
     ticker = yf.Ticker(ticker.upper())
     tickerHistory = ticker.history()
-    if 'Empty DataFrame' in str(tickerHistory):
+    if "Empty DataFrame" in str(tickerHistory):
         return None
     else:
         return ticker.info
@@ -49,4 +49,3 @@ def getTickersList():
         tickerInfo = getTickerInfo(stock.ticker)
         tickersInfo.append(tickerInfo)
     return tickersInfo
-    

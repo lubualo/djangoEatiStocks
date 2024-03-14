@@ -29,6 +29,7 @@
         <div id="collapse{{tickerInfo.symbol}}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#tickerAccordion">
           <div class="accordion-body">
             <ul class="list-group list-group-flush">
+              <li class="list-group-item"><p class="fw-lighter fst-italic">{{ tickerInfo.longBusinessSummary}}</p></li>
               <li class="list-group-item"><strong>Country</strong> {{ tickerInfo.country }}</li>
               <li class="list-group-item"><strong>Current price</strong> {{ tickerInfo.currentPrice }}</li>
               <li class="list-group-item"><strong>Website</strong> {{ tickerInfo.website }}</li>

@@ -53,7 +53,7 @@ def addTickerSearch(request):
             ticker = form.cleaned_data["ticker"]
             tickerInfo = services.getTickerInfo(ticker)
             if tickerInfo != None:
-                if services.isNewTicker(ticker):
+                if services.isNewTicker(ticker.upper()):
                     stock = Stock.objects.create(ticker=ticker.upper())
                     stock.save()
                 return render(
